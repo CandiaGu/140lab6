@@ -144,6 +144,54 @@ module mux8to1 #(parameter WIDTH = 16) (
      
 endmodule : mux8to1
 
+module mux32to1 #(parameter WIDTH = 16) (
+   input  logic [WIDTH*32-1:0] pr31,pr30,pr29,pr28,pr27,pr26,pr25,
+		pr24,pr23,pr22,pr21,pr20,pr19,pr18,
+		pr17,pr16,pr15,pr14,pr13,pr12,pr11,
+		pr10,pr9,pr8,pr7,pr6,pr5,pr4,pr3,pr2,pr1,pr0;
+   output logic [WIDTH-1:0] out,
+   input  logic [4:0] sel);
+   
+   always_comb
+     case(sel)
+       5'd0: out = pr0;
+       5'd1: out = pr1;
+       5'd2: out = pr2;
+       5'd3: out = pr3;
+       5'd4: out = pr4;
+       5'd5: out = pr5;
+       5'd6: out = pr6;
+       5'd7: out = pr7;
+       5'd8: out = pr8;
+       5'd9: out = pr9;
+       5'd10: out = pr10;
+       5'd11: out = pr11;
+       5'd12: out = pr12;
+       5'd13: out = pr13;
+       5'd14: out = pr14;
+       5'd15: out = pr15;
+       5'd16: out = pr16;
+       5'd17: out = pr17;
+       5'd18: out = pr18;
+       5'd19: out = pr19;
+       5'd20: out = pr20;
+       5'd21: out = pr21;
+       5'd22: out = pr22;
+       5'd23: out = pr23;
+       5'd24: out = pr24;
+       5'd25: out = pr25;
+       5'd26: out = pr26;
+       5'd27: out = pr27;
+       5'd28: out = pr28;
+       5'd29: out = pr29;
+       5'd30: out = pr30;
+       5'd31: out = pr31;
+       default: out = 'bx;
+     endcase
+     
+endmodule : mux8to1
+
+
 /*
  * module: demux
  *  

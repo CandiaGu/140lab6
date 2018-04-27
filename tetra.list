@@ -1,0 +1,63 @@
+addr data   label     opcode  operands
+---- ----  --------   ------  --------
+0000 0C00             LDI     R0      
+0001 0000                     $0      
+0002 3C00             LDSP    R0      
+0003 2800             BRA             
+0004 0100                     START   
+0100 0C00  START      LDI     R0      
+0101 0005                     $5      
+0102 3200             PUSH    R0      
+0103 3600             JSR             
+0104 0107                     TETRA   
+0105 3400             POP     R0      
+0106 3000  DONE       STOP            
+0107 3200  TETRA      PUSH    R0      
+0108 3236             PUSH    R6      
+0109 4000             LDSF    R0      
+010A 0003                     $3      
+010B 0C36             LDI     R6      
+010C 0000                     $0      
+010D 4400             CMI     R0      
+010E 0000                     $0      
+010F 2A00             BRZ             
+0110 011F                     ZERO1   
+0111 3200             PUSH    R0      
+0112 3600             JSR             
+0113 0600                     TRI     
+0114 3400             POP     R0      
+0115 0E37             ADD     R6 R7   
+0116 1600             DECR    R0      
+0117 3200             PUSH    R0      
+0118 3600             JSR             
+0119 0107                     TETRA   
+011A 3400             POP     R0      
+011B 0E37             ADD     R6 R7   
+011C 3A3E             MOV     R7 R6   
+011D 2800             BRA             
+011E 0121                     DONE2   
+011F 0C3F  ZERO1      LDI     R7      
+0120 0000                     $0      
+0121 3436  DONE2      POP     R6      
+0122 3400             POP     R0      
+0123 3800             RTN             
+0600 3209  TRI        PUSH    R1      
+0601 4009             LDSF    R1      
+0602 0002                     $2      
+0603 4409             CMI     R1      
+0604 0000                     $0      
+0605 2A00             BRZ             
+0606 0610                     ZERO2   
+0607 1609  NEXT       DECR    R1      
+0608 3209             PUSH    R1      
+0609 3600             JSR             
+060A 0600                     TRI     
+060B 3409             POP     R1      
+060C 1409             INCR    R1      
+060D 0E39             ADD     R7 R1   
+060E 2800             BRA             
+060F 0612                     DONE3   
+0610 0C3F  ZERO2      LDI     R7      
+0611 0000                     $0      
+0612 3409  DONE3      POP     R1      
+0613 3800             RTN             

@@ -59,6 +59,8 @@ module p18240_top(
   wire [15:0] dataBus;
   
   logic clock, reset_L;
+
+  logic [1:0] winAddSub;
    
 //on the board, we'll use pushbuttons for clock and reset
 `ifdef synthesis
@@ -86,7 +88,8 @@ module p18240_top(
                  .clock(clock),
                  .reset_L(reset_L),
                  .currState(currState),
-                 .nextState(nextState));
+                 .nextState(nextState)
+		 .winAddSub(winAddSub);
    
    datapath dp(
               .ir(ir),
@@ -104,7 +107,8 @@ module p18240_top(
               .regSelB(regSelB),
               .cPts(cPts),
               .clock(clock),
-              .reset_L(reset_L));
+              .reset_L(reset_L)
+	      .winAddSub(winAddSub));
 
    memorySystem mem(
                    .data(dataBus), 
