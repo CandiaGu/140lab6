@@ -5,7 +5,7 @@
         BRA     START   ;jumps to main routine
         
         .ORG    $100   
-START   LDI R0, $5      ;5th tetrahedral number,our arg
+START   LDI R0, $3      ;5th tetrahedral number,our arg
         PUSH R0
         JSR TETRA
         POP R0
@@ -33,7 +33,7 @@ DONE2   POP R6
         POP R0
         RTN
 
-        .org  $0600
+        .ORG  $0600
 TRI     PUSH  R1          ; save register R1
         LDSF  R1, $2      ; read n from stack
         CMI   R1, $0      ; check if n == 0

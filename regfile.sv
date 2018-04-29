@@ -39,13 +39,17 @@ module reg_file(
    input             clock,
    input [1:0]       winAddSub);
    
-   logic [15:0] r0, r1, r2, r3, r4, r5, r6, r7;
+   logic [4:0] index;
+   logic [4:0] newIndex;
+   logic indexload;
    logic [15:0] pr31,pr30,pr29,pr28,pr27,pr26,pr25,
 		pr24,pr23,pr22,pr21,pr20,pr19,pr18,
 		pr17,pr16,pr15,pr14,pr13,pr12,pr11,
 		pr10,pr9,pr8,pr7,pr6,pr5,pr4,pr3,pr2,pr1,pr0;
 
-   logic [7:0]  reg_enable_lines_L;
+   logic [31:0]  reg_enable_lines_L;
+   logic [511:0] prwires;
+   logic [511:0] preOutView;
    
    register #(.WIDTH(16)) reg0(.out(pr0), .in(in), .load_L(reg_enable_lines_L[0]),
                                .clock(clock), .reset_L(reset_L));
@@ -112,34 +116,54 @@ module reg_file(
    register #(.WIDTH(16)) reg31(.out(pr31), .in(in), .load_L(reg_enable_lines_L[31]),
                                .clock(clock), .reset_L(reset_L));
 
-   register #(.WIDTH(5)) indexReg(.out(index), .in(newindex), .load_L(indexload),
+   register #(.WIDTH(5)) indexReg(.out(index), .in(newIndex), .load_L(indexload),
                                .clock(clock), .reset_L(reset_L));
 
+
+   logic [4:0] bigselA;
+   logic [4:0] bigselB;
+   logic [8:0] bigIndex;
+
+   //assign bigIndex = {0,0,0,0,index};
+
+   assign bigselA = {1'b0,1'b0,selA};
+   assign bigselB = {1'b0,1'b0,selB};
+
+
    demux #(.OUT_WIDTH(32), .IN_WIDTH(5), .DEFAULT(1))
-         reg_en_decoder (.in(load_L), .sel(selA), .out(preg_enable_lines_L));
+         reg_en_decoder (.in(load_L), .sel(bigselA + index), .out(reg_enable_lines_L));
 
-   mux32to1 #(.WIDTH(16)) muxA(.inA(r0), .inB(r1), .inC(r2), .inD(r3), .inE(r4), .inF(r5), .inG(r6), .inH(r7), 
-                              .out(outA), .sel(selA+index));
+   mux32to1 #(.WIDTH(16)) muxA(.bundle(prwires), 
+                              .out(outA), .sel(bigselA + index ));
 
-   mux32to1 #(.WIDTH(16)) muxB(.inA(r0), .inB(r1), .inC(r2), .inD(r3), .inE(r4), .inF(r5), .inG(r6), .inH(r7), 
-                              .out(outB), .sel(selB+index));
+   mux32to1 #(.WIDTH(16)) muxB(.bundle(prwires), 
+                              .out(outB), .sel(bigselB + index));
 
-   assign indexload = (winAddSub == 0) ? 0 : 1;
+   assign indexload = ((winAddSub == 2'b01)||(winAddSub == 2'b10)) ? 0 : 1;
 
-   logic [511:0] prwires;
-   logic [511:0] preOutView
    always_comb begin  
-	prwires = {pr31,pr30,pr29,pr28,pr27,pr26,pr25,
-		pr24,pr23,pr22,pr21,pr20,pr19,pr18,
-		pr17,pr16,pr15,pr14,pr13,pr12,pr11,
-		pr10,pr9,pr8,pr7,pr6,pr5,pr4,pr3,pr2,pr1,pr0}
-	
-	if(winAddSub == 2'b10)
-	   newIndex = index + 4
-        else
-	   newIndex = index - 4
-	preOutView = (prwires >> (index<<4));
-   	outView = preOutView[127:0]
+    	prwires = {pr31,pr30,pr29,pr28,pr27,pr26,pr25,
+    		pr24,pr23,pr22,pr21,pr20,pr19,pr18,
+    		pr17,pr16,pr15,pr14,pr13,pr12,pr11,
+    		pr10,pr9,pr8,pr7,pr6,pr5,pr4,pr3,pr2,pr1,pr0};
+    	
+    	if(winAddSub == 2'b10)
+    	   newIndex = index + 4;
+      else
+         if(winAddSub == 2'b01)
+    	     newIndex = index - 4;
+         else
+           newIndex = index;
+
+       bigIndex = {1'b0,1'b0,1'b0,1'b0,newIndex};
+
+       $display("index: %d", index);
+       $display("newIndex: %d", index);
+       $display("bigselA: %d", index);
+    	 preOutView = (prwires) >> (bigIndex<<4);
+       outView = preOutView[127:0];
+
+       $display("register: %h", preOutView);
    end
 
 endmodule : reg_file

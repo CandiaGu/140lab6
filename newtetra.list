@@ -1,0 +1,49 @@
+addr data   label     opcode  operands
+---- ----  --------   ------  --------
+0000 0C00             LDI     R0      
+0001 0000                     $0      
+0002 3C00             LDSP    R0      
+0003 2800             BRA             
+0004 0100                     START   
+0100 0C24  START      LDI     R4      
+0101 0004                     $4      
+0102 3100             .DW     JSRW    
+0103 0105             .DW     TETRA   
+0104 3000  DONE       STOP            
+0105 0C09  TETRA      LDI     R1      
+0106 0000                     $0      
+0107 4400             CMI     R0      
+0108 0000                     $0      
+0109 2A00             BRZ             
+010A 0117                     ZERO1   
+010B 3A20             MOV     R4 R0   
+010C 3100             .DW     JSRW    
+010D 0600             .DW     TRI     
+010E 0E0F             ADD     R1 R7   
+010F 1600             DECR    R0      
+0110 3A20             MOV     R4 R0   
+0111 3100             .DW     JSRW    
+0112 0105             .DW     TETRA   
+0113 0E0F             ADD     R1 R7   
+0114 3A19             MOV     R3 R1   
+0115 2800             BRA             
+0116 0119                     DONE2   
+0117 0C1B  ZERO1      LDI     R3      
+0118 0000                     $0      
+0119 3140  DONE2      .DW     RTNW    
+0600 4400  TRI        CMI     R0      
+0601 0000                     $0      
+0602 2A00             BRZ             
+0603 060D                     ZERO2   
+0604 1600  NEXT       DECR    R0      
+0605 3A20             MOV     R4 R0   
+0606 3100             .DW     JSRW    
+0607 0600             .DW     TRI     
+0608 1400             INCR    R0      
+0609 0E38             ADD     R7 R0   
+060A 3A1F             MOV     R3 R7   
+060B 2800             BRA             
+060C 060F                     DONE3   
+060D 0C1B  ZERO2      LDI     R3      
+060E 0000                     $0      
+060F 3140  DONE3      .DW     RTNW    

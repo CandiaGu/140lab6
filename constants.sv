@@ -158,7 +158,9 @@ typedef enum logic [9:0] {
    LSHR   = 10'b00_1001_0000,
    ROL    = 10'b00_1000_1000,
 
-// Stack operations: JSR, LDSF, LDSP, POP, PUSH, RTN, STSF, STSP, ADDSP
+// Stack operations: JSRW, RTNW, JSR, LDSF, LDSP, POP, PUSH, RTN, STSF, STSP, ADDSP
+   JSRW   = 10'b00_1100_0100,
+   RTNW   = 10'b00_1100_0101,
    JSR    = 10'b00_1101_1000,
    JSR1   = 10'b00_1101_1001,
    JSR2   = 10'b00_1101_1010,

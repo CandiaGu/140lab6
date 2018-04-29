@@ -1,0 +1,52 @@
+{
+    "memory256x16_program": [
+        "memory256x16_program",
+        "N6eCF",
+        "module"
+    ],
+    "mux32to1": [
+        "mux32to1",
+        "Tunpr",
+        "module"
+    ],
+    "register": [
+        "register",
+        "DAC4W",
+        "module"
+    ],
+    "_vcs_unit__1933306033": [
+        "_vcs_unit__1933306033",
+        "DeAtL",
+        "module"
+    ],
+    "std": [
+        "std",
+        "reYIK",
+        "module"
+    ],
+    "memory256x16": [
+        "memory256x16",
+        "YCPVc",
+        "module"
+    ],
+    "...MASTER...": [
+        "SIM",
+        "amcQw",
+        "module"
+    ],
+    "p18240_top": [
+        "p18240_top",
+        "KP7dQ",
+        "module"
+    ],
+    "SevenSegmentDigit": [
+        "SevenSegmentDigit",
+        "wDpck",
+        "module"
+    ],
+    "mux8to1": [
+        "mux8to1",
+        "DwY2P",
+        "module"
+    ]
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="part1">
+		<CBX_INST_ENTRY INSTANCE_NAME="|p18240|memorySystem:mem|memory256x16:dmem|altsyncram:mem_rtl_0" CBX_FILE_NAME="altsyncram_nvd1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|p18240|memorySystem:mem|memory256x16:smem|altsyncram:mem_rtl_0" CBX_FILE_NAME="altsyncram_nvd1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|p18240|memorySystem:mem|memory256x16_program:pmem|altsyncram:mem_rtl_0" CBX_FILE_NAME="altsyncram_pcj1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

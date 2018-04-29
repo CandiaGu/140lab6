@@ -45,7 +45,7 @@ module controlpath (
    output controlPts out,
    output opcode_t currState,
    output opcode_t nextState,
-   output [1:0]      winAddSub,
+   output logic [1:0] winAddSub,
    input             clock,
    input             reset_L);
   
@@ -63,7 +63,7 @@ module controlpath (
         FETCH: begin
            out = {F_A, MUX_PC, 2'bxx, DEST_MAR, NO_LOAD, NO_RD, NO_WR};
            nextState = FETCH1;
-            winAddSub = 2'b0;
+           winAddSub = 2'b0;
         end
         FETCH1: begin
            out = {F_A_PLUS_1, MUX_PC, 2'bxx, DEST_PC, NO_LOAD, MEM_RD, NO_WR};
@@ -203,8 +203,8 @@ module controlpath (
 `ifndef synthesis
            $display("STOP occurred at time %d", $time);
             $finish;
-`   winAddSub = 2'b0;
-        endif
+
+`endif
            winAddSub = 2'b0;
         end
         BRC: begin
@@ -448,8 +448,8 @@ module controlpath (
            out = {F_A, MUX_MDR,2'bxx, DEST_PC, NO_LOAD, NO_RD, NO_WR};
            nextState = FETCH;
            winAddSub = 2'b0;
-*/
-        end
+
+        end*/
         RTNW: begin
            out = {F_A, MUX_SP, 2'bxx, DEST_MAR, NO_LOAD, NO_RD, NO_WR};
            nextState = RTN1;
@@ -465,8 +465,8 @@ module controlpath (
            out = {F_A, MUX_MDR, 2'bxx, DEST_PC, NO_LOAD, NO_RD, NO_WR};
            nextState = FETCH;
            winAddSub = 2'b0;
-*/
-        end
+
+        end*/
         LDSF: begin
            out = {F_A, MUX_PC, 2'bxx, DEST_MAR, NO_LOAD, NO_RD, NO_WR};
            nextState = LDSF1;
@@ -605,10 +605,7 @@ module controlpath (
            nextState = FETCH;
            winAddSub = 2'b0;
         end
-        winAddSub = 2'b0;
         endcase
-      winAddSub = 2'b0;
-        end
 
-   winAddSub = 2'b0;
+        end
         endmodule

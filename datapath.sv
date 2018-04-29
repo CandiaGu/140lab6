@@ -64,8 +64,8 @@ module datapath (
            .selA(ir[5:3]),
            .selB(ir[2:0]),
            .clock(clock),
-           .reset_L(reset_L)
-	   .winAddSub(winAddSub));
+           .reset_L(reset_L),
+	         .winAddSub(winAddSub));
    
    tridrive #(.WIDTH(16)) a(.data(aluResult), .bus(newMDR), .en_L(writeMD_L)),
                           b(.data(dataBus), .bus(newMDR), .en_L(cPts.re_L)),

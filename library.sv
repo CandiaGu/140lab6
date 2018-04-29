@@ -145,13 +145,21 @@ module mux8to1 #(parameter WIDTH = 16) (
 endmodule : mux8to1
 
 module mux32to1 #(parameter WIDTH = 16) (
-   input  logic [WIDTH*32-1:0] pr31,pr30,pr29,pr28,pr27,pr26,pr25,
-		pr24,pr23,pr22,pr21,pr20,pr19,pr18,
-		pr17,pr16,pr15,pr14,pr13,pr12,pr11,
-		pr10,pr9,pr8,pr7,pr6,pr5,pr4,pr3,pr2,pr1,pr0;
+   input  logic [WIDTH*32-1:0] bundle,
    output logic [WIDTH-1:0] out,
    input  logic [4:0] sel);
    
+   logic [15:0] pr31,pr30,pr29,pr28,pr27,pr26,pr25,
+    pr24,pr23,pr22,pr21,pr20,pr19,pr18,
+    pr17,pr16,pr15,pr14,pr13,pr12,pr11,
+    pr10,pr9,pr8,pr7,pr6,pr5,pr4,pr3,pr2,pr1,pr0;
+
+    assign {pr31,pr30,pr29,pr28,pr27,pr26,pr25,
+    pr24,pr23,pr22,pr21,pr20,pr19,pr18,
+    pr17,pr16,pr15,pr14,pr13,pr12,pr11,
+    pr10,pr9,pr8,pr7,pr6,pr5,pr4,pr3,pr2,pr1,pr0} = bundle;
+
+
    always_comb
      case(sel)
        5'd0: out = pr0;
@@ -189,7 +197,7 @@ module mux32to1 #(parameter WIDTH = 16) (
        default: out = 'bx;
      endcase
      
-endmodule : mux8to1
+endmodule : mux32to1
 
 
 /*

@@ -88,8 +88,8 @@ module p18240_top(
                  .clock(clock),
                  .reset_L(reset_L),
                  .currState(currState),
-                 .nextState(nextState)
-		 .winAddSub(winAddSub);
+                 .nextState(nextState),
+		              .winAddSub(winAddSub));
    
    datapath dp(
               .ir(ir),
@@ -107,8 +107,8 @@ module p18240_top(
               .regSelB(regSelB),
               .cPts(cPts),
               .clock(clock),
-              .reset_L(reset_L)
-	      .winAddSub(winAddSub));
+              .reset_L(reset_L),
+	            .winAddSub(winAddSub));
 
    memorySystem mem(
                    .data(dataBus), 

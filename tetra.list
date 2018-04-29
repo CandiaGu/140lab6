@@ -6,7 +6,7 @@ addr data   label     opcode  operands
 0003 2800             BRA             
 0004 0100                     START   
 0100 0C00  START      LDI     R0      
-0101 0005                     $5      
+0101 0003                     $3      
 0102 3200             PUSH    R0      
 0103 3600             JSR             
 0104 0107                     TETRA   
