@@ -31,6 +31,7 @@ module reg_file(
    output logic [15:0] outA,
    output logic [15:0] outB,
    output logic [127:0] outView,
+   output logic      w,
    input [15:0]      in,
    input [2:0]       selA,
    input [2:0]       selB,
@@ -147,7 +148,12 @@ module reg_file(
     		pr17,pr16,pr15,pr14,pr13,pr12,pr11,
     		pr10,pr9,pr8,pr7,pr6,pr5,pr4,pr3,pr2,pr1,pr0};
     	
-    	if(winAddSub == 2'b10)
+      if(index == 24)
+          w = 1'b1;
+        else be
+          w = 1'b0;
+
+    	if(winAddSub == 2'b10 && w == 1'b0 )
     	   newIndex = index + 4;
       else
          if(winAddSub == 2'b01)
@@ -160,6 +166,8 @@ module reg_file(
        $display("index: %d", index);
        $display("newIndex: %d", index);
        $display("bigselA: %d", index);
+
+       
     	 preOutView = (prwires) >> (bigIndex<<4);
        outView = preOutView[127:0];
 

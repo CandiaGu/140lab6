@@ -42,6 +42,7 @@
 module controlpath (
    input [3:0]       CCin,
    input [15:0]      IRIn,
+   input             w,
    output controlPts out,
    output opcode_t currState,
    output opcode_t nextState,
@@ -191,7 +192,30 @@ module controlpath (
            out = {F_A, MUX_MDR,2'bxx, DEST_PC, NO_LOAD, NO_RD, NO_WR};
            nextState = FETCH;
            winAddSub = 2'b0;
-        end       
+        end
+        BRW: begin
+           out = {F_A, MUX_PC,2'bxx, DEST_MAR, NO_LOAD, NO_RD, NO_WR};
+           if (w)
+            nextState = BRW2;
+           else
+            nextState = BRW1;
+          winAddSub = 2'b0
+        end
+        BRW1: begin
+           out = {F_A_PLUS_1, MUX_PC,2'bxx, DEST_PC, NO_LOAD, NO_RD, NO_WR};
+           nextState = FETCH;
+           winAddSub = 2'b0;
+        end
+        BRW2: begin
+           out = {4'bxxxx, 2'bxx,2'bxx, DEST_NONE, NO_LOAD, MEM_RD, NO_WR};
+           nextState = BRW3;
+           winAddSub = 2'b0;
+        end
+        BRW3: begin
+           out = {F_A, MUX_MDR,2'bxx, DEST_PC, NO_LOAD, NO_RD, NO_WR};
+           nextState = FETCH;
+           winAddSub = 2'b0;
+        end
         STOP: begin
            out = {F_A_MINUS_1, MUX_PC, 2'bxx, DEST_PC, NO_LOAD, NO_RD, NO_WR};
            nextState = STOP1;

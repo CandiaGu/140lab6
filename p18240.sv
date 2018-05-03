@@ -57,6 +57,7 @@ module p18240_top(
   logic [15:0] r7, r6, r5, r4, r3, r2, r1, r0;
   opcode_t currState, nextState;
   wire [15:0] dataBus;
+  logic w;
   
   logic clock, reset_L;
 
@@ -89,7 +90,8 @@ module p18240_top(
                  .reset_L(reset_L),
                  .currState(currState),
                  .nextState(nextState),
-		              .winAddSub(winAddSub));
+		              .winAddSub(winAddSub),
+                  .w(w));
    
    datapath dp(
               .ir(ir),
@@ -108,7 +110,8 @@ module p18240_top(
               .cPts(cPts),
               .clock(clock),
               .reset_L(reset_L),
-	            .winAddSub(winAddSub));
+	            .winAddSub(winAddSub),
+              .w(w));
 
    memorySystem mem(
                    .data(dataBus), 

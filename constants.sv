@@ -112,6 +112,7 @@ typedef enum logic [9:0] {
    STR2   = 10'b00_0010_1010,
 
 // Branch operations: BRA, BRN, BRZ, BRC, BRV
+   BRW    = 10'b00_1100_0110,
    BRA    = 10'b00_1010_0000,
    BRA1   = 10'b00_1010_0001,
    BRA2   = 10'b00_1010_0010,

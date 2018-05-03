@@ -38,7 +38,8 @@ module datapath (
    input controlPts  cPts,
    input         clock,
    input         reset_L,
-   input [1:0]   winAddSub);
+   input [1:0]   winAddSub,
+   output w);
 
    logic [15:0] regA, regB;
    logic [15:0] memOut;
@@ -65,7 +66,8 @@ module datapath (
            .selB(ir[2:0]),
            .clock(clock),
            .reset_L(reset_L),
-	         .winAddSub(winAddSub));
+	         .winAddSub(winAddSub),
+           .w(w));
    
    tridrive #(.WIDTH(16)) a(.data(aluResult), .bus(newMDR), .en_L(writeMD_L)),
                           b(.data(dataBus), .bus(newMDR), .en_L(cPts.re_L)),

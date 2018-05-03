@@ -1,0 +1,44 @@
+{
+    "Modules": {
+        "...MASTER...": {},
+        "bench2error": {},
+        "_vcs_unit__827193155": {},
+        "std": {},
+        "system": {
+            "Compiled": "Yes",
+            "Compiled Times": 3
+        }
+    },
+    "ObjArchives": [
+        {
+            "archive": "archive.14/_31983_archive_1.a",
+            "objects": [
+                [
+                    "amcQw_d.o",
+                    7498
+                ],
+                [
+                    "gdAaG_d.o",
+                    35170
+                ]
+            ],
+            "size": 42668
+        }
+    ],
+    "CompUnits": {
+        "amcQw_d": {
+            "mod": "...MASTER...",
+            "out": "amcQw_d.o",
+            "bytes": 7498,
+            "mode": 4,
+            "archive": "archive.14/_31983_archive_1.a"
+        },
+        "gdAaG_d": {
+            "mod": "system",
+            "out": "gdAaG_d.o",
+            "bytes": 35170,
+            "mode": 4,
+            "archive": "archive.14/_31983_archive_1.a"
+        }
+    }
+}

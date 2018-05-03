@@ -1,0 +1,107 @@
+{
+    "SIMBData": {
+        "out": "amcQwB.o",
+        "bytes": 90681
+    },
+    "MlibObjs": {},
+    "CurCompileModules": [
+        "...MASTER...",
+        "system"
+    ],
+    "PrevCompiledModules": {
+        "std": {
+            "reYIK_d": {
+                "bytes": 34314,
+                "mode": 4,
+                "mod": "std",
+                "archive": "archive.13/_prev_archive_1.a",
+                "out": "reYIK_d.o"
+            }
+        },
+        "...MASTER...": {
+            "amcQw_d": {
+                "bytes": 7498,
+                "mode": 4,
+                "mod": "...MASTER...",
+                "out": "amcQw_d.o",
+                "archive": "archive.13/_27716_archive_1.a"
+            }
+        },
+        "bench2error": {
+            "MEez6_d": {
+                "bytes": 13125,
+                "mode": 4,
+                "mod": "bench2error",
+                "archive": "archive.13/_prev_archive_1.a",
+                "out": "MEez6_d.o"
+            }
+        },
+        "system": {
+            "gdAaG_d": {
+                "bytes": 37386,
+                "mode": 4,
+                "mod": "system",
+                "out": "gdAaG_d.o",
+                "archive": "archive.13/_27716_archive_1.a"
+            }
+        },
+        "_vcs_unit__827193155": {
+            "ysbk5_d": {
+                "bytes": 7282,
+                "mode": 4,
+                "mod": "_vcs_unit__827193155",
+                "archive": "archive.13/_prev_archive_1.a",
+                "out": "ysbk5_d.o"
+            }
+        }
+    },
+    "NameTable": {
+        "_vcs_unit__827193155": [
+            "_vcs_unit__827193155",
+            "ysbk5",
+            "module"
+        ],
+        "std": [
+            "std",
+            "reYIK",
+            "module"
+        ],
+        "...MASTER...": [
+            "SIM",
+            "amcQw",
+            "module"
+        ],
+        "system": [
+            "system",
+            "gdAaG",
+            "module"
+        ],
+        "bench2error": [
+            "bench2error",
+            "MEez6",
+            "module"
+        ]
+    },
+    "stat": {
+        "nMops": 1995
+    },
+    "LVLData": [
+        "SIM"
+    ],
+    "Misc": {
+        "cwd": "/afs/ece.cmu.edu/usr/jhoffma1/Private",
+        "archive_dir": "archive.13",
+        "daidir": "simv.daidir",
+        "csrc": "csrc",
+        "csrc_abs": "/afs/ece.cmu.edu/usr/jhoffma1/Private/csrc",
+        "default_output_dir": "csrc",
+        "daidir_abs": "/afs/ece.cmu.edu/usr/jhoffma1/Private/simv.daidir"
+    },
+    "PEModules": [],
+    "CompileStrategy": "fullobj",
+    "CompileStatus": "Successful",
+    "CurCompileUdps": {},
+    "CompileProcesses": [
+        "cgproc.27716.json"
+    ]
+}
