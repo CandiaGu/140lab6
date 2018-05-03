@@ -42,7 +42,7 @@
 module controlpath (
    input [3:0]       CCin,
    input [15:0]      IRIn,
-   input             w,
+   input [1:0]       wyFlags,
    output controlPts out,
    output opcode_t currState,
    output opcode_t nextState,
@@ -195,7 +195,7 @@ module controlpath (
         end
         BRW: begin
            out = {F_A, MUX_PC,2'bxx, DEST_MAR, NO_LOAD, NO_RD, NO_WR};
-           if (w)
+           if (wyFlags[0])
             nextState = BRW2;
            else
             nextState = BRW1;
@@ -212,6 +212,29 @@ module controlpath (
            winAddSub = 2'b0;
         end
         BRW3: begin
+           out = {F_A, MUX_MDR,2'bxx, DEST_PC, NO_LOAD, NO_RD, NO_WR};
+           nextState = FETCH;
+           winAddSub = 2'b0;
+        end
+        BRY: begin
+           out = {F_A, MUX_PC,2'bxx, DEST_MAR, NO_LOAD, NO_RD, NO_WR};
+           if (wyFlags[1])
+            nextState = BRY2;
+           else
+            nextState = BRY1;
+          winAddSub = 2'b0
+        end
+        BRY1: begin
+           out = {F_A_PLUS_1, MUX_PC,2'bxx, DEST_PC, NO_LOAD, NO_RD, NO_WR};
+           nextState = FETCH;
+           winAddSub = 2'b0;
+        end
+        BRY2: begin
+           out = {4'bxxxx, 2'bxx,2'bxx, DEST_NONE, NO_LOAD, MEM_RD, NO_WR};
+           nextState = BRY3;
+           winAddSub = 2'b0;
+        end
+        BRY3: begin
            out = {F_A, MUX_MDR,2'bxx, DEST_PC, NO_LOAD, NO_RD, NO_WR};
            nextState = FETCH;
            winAddSub = 2'b0;
@@ -237,6 +260,7 @@ module controlpath (
              nextState = BRC2;
            else 
              nextState = BRC1;
+
            winAddSub = 2'b0;
         end
         BRC1: begin
